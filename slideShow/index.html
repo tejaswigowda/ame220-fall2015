@@ -2,6 +2,15 @@
 <head>
 
 <style>
+  body{
+    margin: 0px;
+  }
+  .nav{
+     position: fixed;
+     display: block;
+     bottom: 10px;
+     color: white;
+  }
   #container{
     width: 100%;
     height: 100%;
@@ -12,9 +21,19 @@
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-color: black;
+    background-size: contain;
   }
   #slide1{
     background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/PipreolaWhitelyiKeulemans.jpg/179px-PipreolaWhitelyiKeulemans.jpg);
+  }
+  #slide2{
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Gib%C3%A3o_de_couro.jpg/225px-Gib%C3%A3o_de_couro.jpg);
+  }
+  #slide3{
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Crested_myna%2C_Osaka%2C_Japan.jpg/375px-Crested_myna%2C_Osaka%2C_Japan.jpg);
+  }
+  #slide4{
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Egretta_thula_at_Las_Gallinas_Wildlife_Ponds.jpg/231px-Egretta_thula_at_Las_Gallinas_Wildlife_Ponds.jpg);
   }
 </style>
 
@@ -31,8 +50,8 @@
   <div class='slide' id='slide3'> </div> 
   <div class='slide' id='slide4'> </div> 
 </div>  
-<a href='javascript:goPrev()'> Prev </a>
-<a href='javascript:goNext()'> Next </a>
+<a style='left:10px' class='nav' href='javascript:goPrev()'> Prev </a>
+<a style='right:10px' class='nav' href='javascript:goNext()'> Next </a>
 
 
 </body>
