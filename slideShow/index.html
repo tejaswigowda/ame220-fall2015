@@ -8,6 +8,7 @@
     background-color: black;
     height: 100%;
     min-height: 100%;
+    overflow: hidden;
   }
   .nav{
      position: fixed;
@@ -46,19 +47,29 @@
 
 <script>
 var currentSlide = 1;
-var startUp = function(){
-  $(".slide").fadeOut('slow');
-  $("#slide1").fadeIn('slow');
+var animation = "fade";
+
+var startUp = function(initSlide, type){
+  animation = type || "fade";
+  $(".slide").fadeOut(0);
+  $("#slide" + initSlide).fadeIn(0);
   currentSlide = 1;
 }
 
 var goPrev = function(){
+  var bw = $("body").width() + "px"
   var next = currentSlide - 1
   if(next < 1){
     next = 4;
   }
-  $("#slide" + currentSlide).stop().fadeOut('slow');
-  $("#slide" + next).stop().fadeIn('slow');
+  if(animation === "fade"){
+    $("#slide" + currentSlide).stop().fadeOut('slow');
+    $("#slide" + next).stop().fadeIn('slow');
+  }
+  else{
+    $("#slide" + currentSlide).stop().animate({"margin-left" : bw},'slow').fadeOut(0);
+    $("#slide" + next).stop().animate({"margin-left": "-" +  bw},0).fadeIn(0).animate({"margin-left":"0px"}, 'slow')
+  }
   currentSlide = next;
 }
 
@@ -67,8 +78,16 @@ var goNext = function(){
   if(next > 4){
     next = 1;
   }
-  $("#slide" + currentSlide).stop().fadeOut('slow');
-  $("#slide" + next).stop().fadeIn('slow');
+  var bw = $("body").width() + "px"
+
+  if(animation === "fade"){
+    $("#slide" + currentSlide).stop().fadeOut('slow');
+    $("#slide" + next).stop().fadeIn('slow');
+  }
+  else{
+    $("#slide" + currentSlide).stop().animate({"margin-left" : "-" + bw},'slow').fadeOut(0);
+    $("#slide" + next).stop().animate({"margin-left": bw},0).fadeIn(0).animate({"margin-left":"0px"}, 'slow')
+  }
   currentSlide = next;
 }
 
@@ -76,7 +95,7 @@ var goNext = function(){
 
 </head>
 
-<body onload='startUp()'>
+<body onload='startUp(2)'>
 <div id='container'>
   <div class='slide' id='slide1'> </div> 
   <div class='slide' id='slide2'> </div> 
