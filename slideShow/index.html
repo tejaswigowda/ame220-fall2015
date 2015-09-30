@@ -54,6 +54,16 @@ var startUp = function(initSlide, type){
   $(".slide").fadeOut(0);
   $("#slide" + initSlide).fadeIn(0);
   currentSlide = 1;
+
+  $("body").keydown(function(event) {
+    var keyCode = event.keyCode;
+    if(keyCode == 37){
+      goPrev();
+    }
+    else if(keyCode == 39){
+      goNext();
+    }
+  });
 }
 
 var goPrev = function(){
@@ -90,6 +100,7 @@ var goNext = function(){
   }
   currentSlide = next;
 }
+
 
 </script>
 
