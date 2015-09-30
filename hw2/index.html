@@ -1,0 +1,71 @@
+<html>
+<head>
+
+<style>
+  html,body{
+    margin: 0px;
+    background-color: black;
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+  }
+  .nav{
+     position: fixed;
+     display: block;
+     bottom: 10px;
+     color: white;
+  }
+  #container{
+    width: 100%;
+    height: 100%;
+  }
+  .slide{
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: black;
+    background-size: contain;
+    position: absolute;
+  }
+
+</style>
+
+<script>
+  var slideShow = {
+    initialize:function(obj,type,initSlide){ 
+      slideShow.obj = obj;
+      var outS = "";
+      for (var i = 0; i < obj.length; i++){
+        outS = outS + "<div style='background-image:url(" + obj[i]+  ")' class='slide' id='slide" + i + "'> </div>";
+      }
+      document.getElementById("container").innerHTML = outS;
+    },
+    goPrev:function(){
+    },
+    goNext:function(){
+    },
+    currentSlide:0,
+    obj:null
+  }
+
+
+  var startUp = function(){
+    var obj = [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/PipreolaWhitelyiKeulemans.jpg/179px-PipreolaWhitelyiKeulemans.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Gib%C3%A3o_de_couro.jpg/225px-Gib%C3%A3o_de_couro.jpg;",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Crested_myna%2C_Osaka%2C_Japan.jpg/375px-Crested_myna%2C_Osaka%2C_Japan.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Egretta_thula_at_Las_Gallinas_Wildlife_Ponds.jpg/231px-Egretta_thula_at_Las_Gallinas_Wildlife_Ponds.jpg"
+      ]
+    slideShow.initialize(obj, "fade", 1);
+  }
+</script>
+</head>
+
+<body onload="startUp()">
+  <div id='container'> </div>
+<a style='left:10px' class='nav' href='javascript:slideShow.goPrev()'> Prev </a>
+<a style='right:10px' class='nav' href='javascript:slideShow.goNext()'> Next </a>
+  
+</body>
+</html>

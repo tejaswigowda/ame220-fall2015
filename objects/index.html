@@ -1,0 +1,34 @@
+<html>
+<head>
+
+<script>
+  var binaryOps = {
+    a:null,
+    b:null,
+    sum: function(){
+      return binaryOps.a + binaryOps.b;
+    },
+    diff: function(){
+    },
+    isGreaterThan: function(){
+    },
+    setValue: function(a,b){
+      binaryOps.a = a;
+      binaryOps.b = b;
+    }
+  }
+
+
+  var startUp = function(){
+    binaryOps.setValue(4,5);
+    alert(binaryOps.sum());
+    alert(binaryOps.diff());
+    alert(binaryOps.isGreaterThan());
+  }
+</script>
+</head>
+
+<body onload="startUp()">
+</body>
+
+</html>
