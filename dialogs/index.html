@@ -1,0 +1,75 @@
+<html>
+<head>
+<style>
+body
+{
+    margin: 0px;
+}
+.dialog
+{
+  background-color: white;
+  margin: auto;
+  max-width: 300px;
+  margin-top: 200px;
+  padding: 5%;
+  width: 90%;
+}
+
+.overlay
+{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,.6);
+  top: 0px;
+}
+</style>
+
+<script>
+var dialog = {
+  show: function(type, message, success, fail){
+    document.body.innerHTML += 
+        "<div class='overlay'>" +
+          "<div class='dialog'>" +
+            "<div class='message'>" + message + "</div>" +
+          "</div>"
+        "</div>";
+  }
+}
+
+
+function showAlert()
+{
+  dialog.show("alert", "This is an alert");
+}
+
+function showConfirm()
+{
+  var successCallback = function(){}
+  var failureCallback = function(){}
+  dialog.show("confirm", "This is an confirmation", successCallback, failureCallback);
+}
+
+function showPrompt()
+{
+  var successCallback = function(){}
+  var failureCallback = function(){}
+  dialog.show("prompt", "This is an prompt", successCallback, failureCallback);
+}
+
+
+</script>
+
+</head>
+
+
+<body>
+<h1> Dialogs </h1>
+
+<a href='javascript:showAlert()'> Alert </a>
+<a href='javascript:showConfirm()'> Confirm </a>
+<a href='javascript:showPrompt()'> Prompt </a>
+
+</body>
+
+</html>
