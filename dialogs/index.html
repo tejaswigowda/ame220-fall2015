@@ -10,14 +10,14 @@ body
   margin: auto;
   background-color: white;
   max-width: 300px;
-  margin-top: 200px;
+  margin-top: -100px;
   padding: 5%;
   width: 90%;
   box-shadow: 0px 0px 10px blue;
   border-radius: 10px;
   text-align: center;
   opacity: 0;
-  transition: 3s; 
+  transition: .5s; 
 }
 
 .bWrapper
@@ -67,7 +67,7 @@ var dialog = {
           "</div>"+
         "</div>";
     $(".overlay input").focus()
-    $(".overlay .dialog").css({'opacity':1, 'color':'white', "background": "black"});
+    $(".overlay .dialog").css({'opacity':1, 'margin-top': "200px",'color':'white', "background": "black"});
   },
   __success: null,
   __fail: null,
