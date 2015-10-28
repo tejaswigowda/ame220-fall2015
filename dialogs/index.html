@@ -16,6 +16,8 @@ body
   box-shadow: 0px 0px 10px blue;
   border-radius: 10px;
   text-align: center;
+  opacity: 0;
+  transition: 3s; 
 }
 
 .bWrapper
@@ -39,7 +41,7 @@ body
   top: 0px;
 }
 
-.alert .cancel
+.alert .cancel, .alert input, .confirm input
 {
   display: none;
 }
@@ -57,16 +59,21 @@ var dialog = {
         "<div class='overlay " + type + "'>" +
           "<div class='dialog'>" +
             "<div class='message'>" + message + "</div>" +
+            "<input type='text'>" +
             "<div class='bWrapper'>" +
               "<a href='javascript:dialog.cancel()' class='button cancel'>Cancel</a>" +
               "<a href='javascript:dialog.done()' class='button done'>OK</a>" +
             "</div>"+
           "</div>"+
         "</div>";
+    $(".overlay input").focus()
+    $(".overlay .dialog").css({'opacity':1, 'color':'white', "background": "black"});
   },
   __success: null,
   __fail: null,
+  value: "",
   done: function(){
+    dialog.value = $(".overlay input").val()
     $(".overlay").remove();
     if(dialog.__success){
       dialog.__success();
@@ -95,7 +102,7 @@ function showConfirm()
 
 function showPrompt()
 {
-  var successCallback = function(){}
+  var successCallback = function(){ alert(dialog.value) }
   var failureCallback = function(){}
   dialog.show("prompt", "This is an prompt", successCallback, failureCallback);
 }
