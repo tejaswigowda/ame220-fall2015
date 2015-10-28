@@ -13,6 +13,8 @@
 <script src="jquery-1.11.3.js" type="text/javascript"></script>
 
 <script>
+var MAX_WIDTH = 512;
+var MAX_HEIGHT = 512;
 function imageUploaded()
 {
    var file = $('#uploadImage').get(0);
@@ -26,8 +28,6 @@ function imageUploaded()
             var canvas = document.createElement("canvas");
             var img = document.createElement("img");
             img.onload= function(){
-                 var MAX_WIDTH = 512;
-                 var MAX_HEIGHT = 512;
                  var width = img.width;
                  var height = img.height;
                  var w2 = width;
