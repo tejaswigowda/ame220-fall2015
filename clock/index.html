@@ -51,31 +51,79 @@
   #n12{
     transform: rotate(270deg);
   }
+  .needle
+  {
+     height: 10px;
+     margin-top: 150px;
+     position: absolute;
+     width: 300px;
+     line-height: 0px;
+     transition: .5s ease-in;
+  }
+  .needle span
+  {
+      display: block;
+      width: auto;
+      margin-left: 150px;
+     text-align: left;
+  }
+  #hour span{
+    background-color: red;
+    max-width: 100px;
+    height: 2px;
+  }
+  #min span{
+    background-color: blue;
+    max-width: 120px;
+    height: 2px;
+  }
+  #secs span{
+    background-color: black;
+    max-width: 135px;
+    height: 1px;
+  }
 </style>
 
 <script>
+  function updateClock()
+  {
+    var h = new Date().getHours() % 12;
+    var m = new Date().getMinutes();
+    var s = new Date().getSeconds();
+    var hdeg = (h - 3)*30;
+    var mdeg = (m - 15)*6;
+    var sdeg = (s - 15)*6;
+    document.getElementById("hour").style.transform = "rotate(" + hdeg + "deg)";
+    document.getElementById("min").style.transform = "rotate(" + mdeg + "deg)";
+    document.getElementById("secs").style.transform = "rotate(" + sdeg + "deg)";
+  }
+
+  function startUp()
+  {
+    setInterval("updateClock()", 1000);
+  }
 </script>
 </head>
 
-<body>
+<body onload='startUp()'>
 
   <div id='clockWrapper'>
-    <div class='nums' id='n1'> 1 </div>
-    <div class='nums' id='n2'> 2 </div>
-    <div class='nums' id='n3'> 3 </div>
-    <div class='nums' id='n4'> 4 </div>
-    <div class='nums' id='n5'> 5 </div>
-    <div class='nums' id='n6'> 6 </div>
-    <div class='nums' id='n7'> 7 </div>
-    <div class='nums' id='n8'> 8 </div>
-    <div class='nums' id='n9'> 9 </div>
-    <div class='nums' id='n10'> 10 </div>
-    <div class='nums' id='n11'> 11 </div>
-    <div class='nums' id='n12'> 12 </div>
+    <div class='nums' id='n1'> | </div>
+    <div class='nums' id='n2'> | </div>
+    <div class='nums' id='n3'> || </div>
+    <div class='nums' id='n4'> | </div>
+    <div class='nums' id='n5'> | </div>
+    <div class='nums' id='n6'> || </div>
+    <div class='nums' id='n7'> | </div>
+    <div class='nums' id='n8'> | </div>
+    <div class='nums' id='n9'> || </div>
+    <div class='nums' id='n10'> | </div>
+    <div class='nums' id='n11'> | </div>
+    <div class='nums' id='n12'> || </div>
 
-    <div id='hour'> </div>
-    <div id='min'> </div>
-    <div id='secs'> </div>
+    <div class='needle' id='hour'><span> <span> </div>
+        <div  class='needle' id='min'><span> </span> </div>
+      <div  class='needle' id='secs'><span> </span></div>
 
   </div>
 
