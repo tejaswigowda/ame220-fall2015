@@ -1,10 +1,20 @@
 <html>
 <head>
 <style>
+#addNew
+{
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    background: rgba(0,0,0,.7);
+}
+
   #clockWrapper{
     width: 300px;
-    margin: auto;
     height: 300px;
+    margin: auto;
     border: 1px solid black;
     border-radius: 150px;
   }
@@ -57,13 +67,12 @@
      position: absolute;
      width: 300px;
      line-height: 0px;
-     transition: .5s ease-in;
   }
   .needle span
   {
       display: block;
       width: auto;
-      margin-left: 150px;
+      margin-left: 140px;
      text-align: left;
   }
   #hour span{
@@ -84,11 +93,12 @@
 </style>
 
 <script>
-  function updateClock()
+  function updateClock(date)
   {
-    var h = new Date().getHours() % 12;
-    var m = new Date().getMinutes();
-    var s = new Date().getSeconds();
+    date = date || new Date();
+    var h = date.getHours() % 12;
+    var m = date.getMinutes();
+    var s = date.getSeconds();
     var hdeg = (h - 3)*30;
     var mdeg = (m - 15)*6;
     var sdeg = (s - 15)*6;
@@ -99,13 +109,41 @@
 
   function startUp()
   {
-    setInterval("updateClock()", 1000);
+    generateMyTimeZoneList();
+    setInterval("updateClock(null)", 1000);
   }
+
+  function addNewTZ()
+  {
+    document.getElementById("addNew").style.display = "block";
+  }
+
+  function generateMyTimeZoneList(){
+    var outS = "";
+
+    outS += "<a href='javascript:TZSelected(-1)'> Current Location </a><br>";
+
+    // generate markup
+
+    outS += "<a href='javascript:addNewTZ()'>+ New </a>";
+
+
+    document.getElementById("placeList").innerHTML = outS;
+  
+  }
+
+  function TZSelected(a)
+  {
+    if(a == -1){
+      updateClock(null);
+    }
+  }
+var myTimeZones = [];  
+
 </script>
 </head>
 
 <body onload='startUp()'>
-
   <div id='clockWrapper'>
     <div class='nums' id='n1'> - </div>
     <div class='nums' id='n2'> - </div>
@@ -120,12 +158,22 @@
     <div class='nums' id='n11'> - </div>
     <div class='nums' id='n12'> = </div>
 
-    <div class='needle' id='hour'><span> <span> </div>
-        <div  class='needle' id='min'><span> </span> </div>
-      <div  class='needle' id='secs'><span> </span></div>
-
+    <div class='needle' id='hour'></span> <span> </div>
+    <div  class='needle' id='min'><span> </span> </div>
+    <div  class='needle' id='secs'><span> </span></div>
   </div>
 
+  <div id='placeList'> </div>
+
+  <div id="addNew"> 
+      <select id='timeZones'>
+        <option value='-12:00'> US minor islands (-12:00) </option>
+        <option value='-11:00'> Hawaii (-11:00) </option>
+        <option value='-10:00'> New Zealand (-10:00) </option>
+        <option value='-09:30'> French Polynesia (-9:30) </option>
+      </select>
+      <a href='javascript:addTimeZone()'> Add </a>
+  </div>
 </body>
 
 </html>
