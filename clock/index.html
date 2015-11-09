@@ -115,6 +115,12 @@
     setInterval("updateClock(null)", 1000);
   }
 
+  function cancelTimeZone()
+  {
+    document.getElementById("addNew").style.marginTop = "1000px";
+    setTimeout(addNewTZ_Aux1, 1000);
+  }
+
   function addNewTZ()
   {
     document.getElementById("addNew").style.display = "block";
@@ -124,7 +130,11 @@
   function addNewTZ_Aux(){
     document.getElementById("addNew").style.marginTop = "0px";
   }
-    document.getElementById("addNew").style.marginTop = "0px";
+
+  function addNewTZ_Aux1(){
+    document.getElementById("addNew").style.display = "none";
+  }
+
   function generateMyTimeZoneList(){
     var outS = "";
 
