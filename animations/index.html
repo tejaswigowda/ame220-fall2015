@@ -1,0 +1,72 @@
+<html>
+<head>
+<script src='jquery-1.11.3.js'> </script>
+<style>
+@keyframes example {
+     from {background-color: red;}
+     to {background-color: yellow;}
+}
+
+@keyframes smooth{
+     0% {background-color: red; top:0px;}
+     50% {background-color: yellow; }
+     100% {background-color: red;}
+}
+
+@keyframes cycle
+{
+   0%   {background-color: red; left:0px; top:0px;}
+   25%  {background-color: yellow; left:200px; top:0px;}
+   50%  {background-color: blue; left:200px; top:200px;}
+   75%  {background-color: green; left:0px; top:200px;}
+   100% {background-color: red; left:0px; top:0px;}
+}
+
+.doAnimate
+{
+  animation: cycle 8s;
+  animation-iteration-count: 1;
+}
+
+.revAnimate
+{
+  animation: cycle 8s;
+  animation-direction: reverse;
+  animation-iteration-count: 1;
+}
+
+.doAnimateSmooth
+{
+  animation: smooth 4s;
+}
+
+#box{
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  display: block;
+  position: absolute;
+  margin-top: 30px;
+}
+</style>
+
+<script>
+function applyAnimation(){
+  $("#box").addClass("doAnimate").delay(100).removeClass("revAnimate");
+}
+function unapplyAnimation(){
+  $("#box").removeClass("doAnimate");
+  $("#box").addClass("revAnimate");
+}
+</script>
+</head>
+
+
+<body>
+<div id='box'> </div>
+<a href="javascript:applyAnimation()"> Add Animation </a>
+<a href="javascript:unapplyAnimation()"> Remove Animation </a>
+</body>
+
+
+</html>
